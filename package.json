@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "mon-md": "ts-node index.ts"
+    "mon-md": "ts-node index.ts",
+    "mon-edit": "browser-sync start --index ./md_out/md/signal_processing/main.html ./md_out/md --server --files './md/**'"
   },
   "dependencies": {
     "@types/node": "^14.14.22",
+    "browser-sync": "^2.26.14",
     "markdown-it": "^12.0.4",
     "markdown-it-katex": "^2.0.3",
     "node": "^15.7.0",
