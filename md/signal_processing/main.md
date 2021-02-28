@@ -139,7 +139,7 @@ Nyquist rate $:= 2\omega_{M}$
 
 #### 7.4 Discrete time processing of continuous time signals
 
-![](/images/filtering_continuous_time_signal_using_discrete_system.png)
+![](./tex/fig_7_24.png)
 $$ x_d[n] = x_c(nT) \qquad (7.16) $$
 Applying Fourier transform to $(7.3)$,
 $$ X_p(j\omega) = \sum_{n=-\infty}^{\infty}x_c(nT)e^{-j\omega nT} \qquad (7.18) $$
