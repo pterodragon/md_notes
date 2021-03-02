@@ -16,7 +16,7 @@ Theorem 1: By linear transformation of the independent variables, the equation c
 1. Elliptic case: $a_{12}^2<a_{11}a_{22}$, it is reducible to
 $$ u_{xx} + u_{yy} + \cdots = 0 $$
 
-2. Hyperbolic case: $a_{12}^2>a_{11}a_{22}$, it is reducible to
+2. Hyperbolic case: $a_{12}^2 > a_{11}a_{22}$, it is reducible to
 $$ u_{xx} - u_{yy} + \cdots = 0 $$
 
 3. Parabolic case: $a_{12}^2=a_{11}a_{22}$, it is reducible to
@@ -82,8 +82,8 @@ $$\max_x{|u_1-u_2|} \le \max_x{|\phi_1-\phi_2|}$$
 proven by maximum principle
 
 ##### Diffusion on the whole line
-$$
-u_t = ku_{xx}, \quad x\in \real, t>0 \quad (2.4.1) \newline
+$$ \tag{2.4.1}
+u_t = ku_{xx}, \quad x\in \real, t>0  \newline
 u(x,0) = \phi(x)
 $$
 
@@ -98,14 +98,23 @@ If $u(x, t)$ is a solution, the following are also solutions (verify by plugging
 5. *dilated function* $u(\sqrt{a}x,at)$ for $a > 0$
 
 The solution is
-$$ u(x, t) = \frac{1}{\sqrt{4\pi kt}}\int_{-\infty}^{\infty} e^{-(x - y)^2/4kt} \phi(y) \mathrm{d}y \quad (2.4.8)$$
+$$ \tag{2.4.8} u(x, t) = \frac{1}{\sqrt{4\pi kt}}\int_{-\infty}^{\infty} e^{-(x - y)^2/4kt} \phi(y) \mathrm{d}y $$
 Source function:
 $$ S(x, t) = \frac{\partial Q}{\partial x}=\frac{1}{\sqrt{4\pi kt}}e^{-x^2/4kt}, \quad t>0 $$
 $$ Q(x, t) = \frac{1}{2}+\frac{1}{\sqrt{\pi}}\int_0^{x/\sqrt{4kt}}e^{-p^2}\mathrm{d}p $$
+Comparing to the pdf of normal distribution:
+$$ f(x|\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\big(\frac{(x-\mu)}{\sigma}\big)^2}$$
+$$ S(x,t) = f(x|\mu=0,\sigma=\sqrt{2kt})$$
+$$ \delta(x) = \lim_{\sigma\rightarrow 0}f(x|\mu,\sigma) = \lim_{t\rightarrow 0}S(x, t) $$
 Note:
 $$ u(x, t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)\mathrm{d}y, \quad t>0 $$
-$$ \mathrm{Erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-p^2}\mathrm{d}p$$
+$$ \mathrm{Erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-p^2}\mathrm{d}p, \quad \lim_{x\rightarrow+\infty}\mathrm{Erf}(x) = 1$$
 $$ Q(x, t) = \frac{1}{2} + \frac{1}{2}\mathrm{Erf}\bigg(\frac{x}{\sqrt{4kt}}\bigg) $$
+$$ \int_{-\infty}^{\infty}S(x,t)\mathrm{d}x = 1$$
+For any $h(x)$,
+$$ \lim_{\epsilon\rightarrow 0}\int_{-\infty}^{\infty}S(x-y,\epsilon)h(y)\mathrm{d}y=(\delta*h)(x) = h(x)$$
+Cutting out the spike of $S$ and consider the max value:
+$$ \lim_{t\rightarrow 0}\max_{|x|>\delta} S(x,t) = 0 $$
 
 ##### Comparison of waves and diffusions
 
@@ -162,3 +171,307 @@ v(0,t) = v(l, t) = 0, \quad t\in \real
 $$
 Solution is by odd extension of $\phi$ and $\psi$, and counting the number of reflection occurred at $(x,t)$.
 Different regions (diamonds/triangles) in the $x$-$t$ plane has a different expression of solution
+
+#### 3.3 Diffusion with a source
+##### Source on whole-line
+$$ u_t - ku_{xx} = f(x,t), \quad x\in \real, t>0 \newline
+u(x,0) = \phi(x)
+$$
+Solution is:
+$$
+u(x,t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)\mathrm{d}y+\int_0^t\int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)\mathrm{d}y\mathrm{d}s
+$$
+Guessing by analogy to solution of 1st order linear ODE using integrating factor (operator method)
+
+##### Source on a half-line
+$$ v_t - kv_{xx} = f(x,t), \quad x>0, t>0 \newline
+v(0,t) = h(t) \newline
+v(x,0) = \phi(x)
+$$
+To solve, let $V(x,t) = v(x,t)-h(t)$ and reduce the problem to a homogenous one and use method of reflection
+
+For the Neumann problem:
+$$ w_t - kw_{xx} = f(x,t), \quad x>0, t>0 \newline
+w_x(0,t) = h(t) \newline
+w(x,0) = \phi(x)
+$$
+To solve, let $W(x,t) = w(x,t)-xh(t)$
+
+#### 3.4 Waves with a source
+$$ \tag{3.4.1}u_{tt} - c^2u_{xx} = f(x, t) $$
+$$
+\tag{3.4.2}
+\begin{aligned}
+u(x, 0) & = \phi(x) \\
+u_t(x, 0) & = \psi(x)
+\end{aligned}
+$$
+The unique solution is:
+$$ u(x, t) = 
+\tag{3.4.3} \frac{1}{2}[\phi(x + ct) + \phi(x - ct)] + \newline \frac{1}{2c}\int^{x + ct}_{x - ct}\psi+\frac{1}{2c}\iint_\Delta f$$
+where $\Delta$ is the characteristic triangle bounded by $y = x - ct, y = x + ct, t = 0$
+
+#### Well-posedness
+Let $u_1$ be the solution to the data $\phi_1, \psi_1, f_1$, 
+$u_2$ be the solution to the data $\phi_2, \psi_2, f_2$, 
+Consider $u=u_1-u_2$, and the area of $\Delta$ is $ct^2$:
+$$
+|u| \le \max|\phi|+\frac{1}{2c}\max |\psi|\cdot 2ct + \frac{1}{2c}\max|f|\cdot ct^2
+$$
+$$
+\|u_1-u_2\|_T \le \|\phi_1-\phi_2\|+ T\|\psi_1-\psi_2\| + \frac{T^2}{2}\|f_1-f_2\|_T
+$$
+where $\|w\|_T =\max_{x\in \real, t\in[0, T]}|w(x,t)|$.
+
+$$
+\|\phi_1-\phi_2\|<\delta,
+\|\psi_1-\psi_2\|<\delta,
+\|f_1-f_2\|_T<\delta \newline \Rightarrow
+\|u_1-u_2\|_T \le \delta(1+T+T^2)<\epsilon
+$$
+
+#### Proof of $(3.4.3)$
+By method of characteristics, Green's theorem, or operator method
+
+#### 3.5 Diffusion analysis
+In 2.3,
+$$ \tag{3.5.1} u(x, t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)\mathrm{d}y, \quad t>0 $$
+can be written as
+$$ \tag{3.5.2} u(x, t) = \frac{1}{\sqrt{4\pi}}\int_{-\infty}^{\infty}e^{-p^2/4}\phi(x-p\sqrt{kt})\mathrm{d}p$$
+
+##### Theorem 1:
+
+$\phi$ bounded for $x \in\real \Rightarrow$
+
+- $(3.5.2)$ is infinitely differentiable for $x\in \real, t>0$
+- $u$ is a solution to $u_t=ku_{xx}$
+- $\lim_{t\rightarrow 0} u(x,t)=\phi(x)$
+
+Corollary:
+
+$u(x,t)$ has all derivatives of all orders, even if $\phi$ is not differentiable
+
+This means all solutions become smooth as soon as diffusion takes place
+
+##### Theorem 2:
+Let $\phi(x)$ be bounded and piecewise continuous, then $(3.5.1)$ is infinitely differentiable solution for $t > 0$ and 
+$$ \lim_{t\rightarrow 0} u(x,t) = \frac{1}{2}[\phi(x^+)+\phi(x^-)]$$
+
+
+### Chapter 4 Boundary Problems
+#### 4.1 Separation of variables, Dirichlet condition
+
+##### Homogenous wave equation
+$$
+\tag{4.1.1}
+u_{tt} = c^2u_{xx}, \quad x \in (0, l)
+$$
+$$
+\tag{4.1.2}
+u(0, t) = 0 = u(l, t)
+$$
+$$
+\tag{4.1.3}
+u(x, 0) = \phi(x), u_t(x,0) = \psi(x)
+$$
+
+A *separated solution* is of the form
+$$ 
+u(x, t) = X(x)T(t)
+$$
+
+$$
+-\frac{T''}{c^2T}=-\frac{X''}{X}=\lambda
+$$
+Solving the pairs of ODE gives
+$$
+u_n(x,t) = \bigg(A_n \cos{\frac{n\pi ct}{l}} + B_n \sin{\frac{n\pi ct}{l}} \bigg)\sin{\frac{n\pi x}{l}}
+$$
+And solution to $(4.1.1)$ and $(4.1.2)$ only is any *finite* sum:
+$$
+\tag{4.1.9}
+u(x,t) = \sum_n{\bigg(A_n \cos{\frac{n\pi ct}{l}} + B_n \sin{\frac{n\pi ct}{l}} \bigg)\sin{\frac{n\pi x}{l}}}
+$$
+for $n>0$ and $A_n, B_n$ are arbitrary constants
+
+$(4.1.9)$ solves $(4.1.3)$ as well if:
+$$
+\phi(x) = \sum_n{A_n \sin{\frac{n\pi x}{l}}}
+$$
+$$
+\psi(x) = \sum_n{\frac{n\pi c}{l}B_n \sin{\frac{n\pi x}{l}}}
+$$
+
+##### Homogenous diffusion equation (Dirichlet)
+$$
+u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
+u(0, t) = u(l, t) = 0 \newline
+u(x, 0) = \phi(x)
+$$
+By $u=T(t)X(x)$ again, solution:
+$$
+\tag{4.1.17}
+u(x, t) = \sum_{n=1}^{\infty}A_ne^{-(n\pi/l)^2kt}\sin\frac{n\pi x}{l}
+$$
+if
+$$
+\phi(x) = \sum_{n=1}^{\infty}A_n\sin\frac{n\pi x}{l}
+$$
+
+$\lambda_n = (n\pi / l)^2$ are called *eigenvalues* and $X_n(x) = \sin(n\pi x/l)$ are called *eigenfunctions* because
+$$
+-\frac{\mathrm{d}^2}{\mathrm{d}x^2}X = \lambda X, \quad X(0) = X(l) = 0
+$$
+and $-\frac{\mathrm{d}^2}{\mathrm{d}x^2}$ is the operator. There're infinitely many eigenvalues
+
+$\lambda_n > 0$ for this Dirichlet problem
+
+#### 4.2 Neumann condition
+##### Homogenous diffusion equation
+$$
+u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
+u_x(0, t) = u_x(l, t) = 0 \newline
+u(x, 0) = \phi(x)
+$$
+$$
+\lambda_n = \Big(\frac{n\pi}{l}\Big)^2, n \ge 0 \newline
+$$
+$\lambda_0$ has eigenfunction $X=C$ where $C$ is constant
+
+$\lambda_n, n>0$ has eigenfunctions $X_n(x) = \cos{\frac{n\pi x}{l}}$
+
+Solution:
+$$
+\tag{4.2.5}
+u(x, t) = \frac{1}{2}A_0 + \sum_{n=1}^{\infty}A_ne^{-(n\pi/l)^2kt}\cos\frac{n\pi x}{l}
+$$
+where $\phi(x)$ is required to have Fourier expansion:
+
+$$
+\phi(x) = \frac{1}{2}A_0 + \sum_{n=1}^{\infty}A_n\cos\frac{n\pi x}{l}
+$$
+
+##### Homogenous wave equation
+$$
+u_{tt} = c^2u_{xx}, \quad x \in (0, l)
+$$
+$$
+u_x(0, t) = 0 = u_x(l, t)
+$$
+$$
+u(x, 0) = \phi(x), u_t(x,0) = \psi(x)
+$$
+
+Solution:
+$$
+u(x,t)=\frac{1}{2}A_0 + \frac{1}{2}B_0t + \sum_{n = 1}^\infty \Big(
+A_n\cos \frac{n\pi ct}{l}+
+B_n\sin \frac{n\pi ct}{l}
+\Big)
+\cos \frac{n\pi x}{l}
+$$
+$\phi(x)$ and $\psi(x)$ must satisfy:
+
+$$
+\phi(x)=\frac{1}{2}A_0 + \sum_{n = 1}^\infty A_n\cos \frac{n\pi x}{l}
+$$
+
+$$
+\psi(x)= \frac{1}{2}B_0 + \sum_{n = 1}^\infty
+\frac{n\pi c}{l} B_n\cos \frac{n\pi x}{l}
+$$
+
+#### 4.3 Robin condition
+Solving $-X'' = \lambda X$ with BC
+$$
+X' - a_0X = 0, \quad x = 0 \newline
+X' + a_lX = 0, \quad x = l
+$$
+
+##### Positive eigenvalues: $\lambda = \beta^2 >0$
+$$
+\tag{4.3.10}
+\tan \beta l = \frac{(a_0 + a_l)\beta}{\beta^2-a_0a_l}
+$$
+Eigenfunction:
+$$
+\tag{4.3.9}
+X(x) =C\Big(\cos \beta x+ \frac{a_0}{\beta} \sin \beta x\Big)
+$$
+
+By considering graphs of both sides of $(4.3.10)$,
+
+Case 1: 
+$a_0 > 0, a_l > 0$: radiation at both ends
+$$
+n^2\frac{\pi^2}{l^2} < \lambda_n < (n + 1)^2\frac{\pi^2}{l^2}, \quad n \ge 0
+$$
+$$
+\lim_{n\rightarrow \infty}\beta_n - n\frac{\pi}{l} = 0
+$$
+Case 2: $a_0 < 0, a_l > 0, a_0 + a_l > 0$: more radiation than absorption
+
+There's an eigenvalue
+$$
+0 < \lambda_0 < \Big(\frac{\pi}{2l}\Big)^2
+$$
+iff
+$$
+\tag{4.3.14}
+a_0 + a_l > -a_0a_ll
+$$
+
+##### Zero eigenvalue
+iff
+$$
+\tag{4.3.15}
+a_0 + a_l = -a_0a_ll
+$$
+
+##### Negative eigenvalue: $\lambda = -\gamma^2 < 0$
+
+$$
+\tag{4.3.16}
+\tanh \gamma l = - \frac{(a_0 + a_l)\gamma}{\gamma^2 + a_0a_l}
+$$
+
+$$
+\tag{4.3.17}
+X(x) = \cosh{\gamma x} + \frac{a_0}{\gamma} \sinh \gamma x
+$$
+
+Case 1: $a_0 > 0, a_l > 0$: radiation at both ends
+
+No negative eigenvalues
+
+Case 2: $a_0 < 0, a_l > 0, a_0 + a_l > 0$: more radiation than absorption
+
+There's an eigenvalue
+iff
+$$
+\tag{4.3.18}
+a_0 + a_l < -a_0a_ll
+$$
+
+##### Summary:
+Case 1 $\Rightarrow\lambda_n > 0$
+
+Case 2:
+- $a_0 + a_l > -a_0a_ll \Rightarrow \lambda_n > 0, n \ge 0$
+- $a_0 + a_l = -a_0a_ll \Rightarrow$ $\lambda_0 = 0, \lambda_n > 0, n > 0$ 
+- $a_0 + a_l < -a_0a_ll \Rightarrow$ $\lambda_0 < 0, \lambda_n > 0, n > 0$ 
+
+#### Conclusion
+Let
+$$
+u(x,t) = \sum_n T_n(t)X_n(x)
+$$
+where $X_n(x)$ are the eigenfunctions,
+$$
+T_n(t) = \begin{cases}
+A_n e^{-\lambda_n k t} \quad & \text{for diffusion} \\
+A_n \cos(\sqrt{\lambda_n}ct) + B_n \sin(\sqrt{\lambda_n}ct) \quad  & \text{for waves} \\
+\end{cases}
+$$
+
+

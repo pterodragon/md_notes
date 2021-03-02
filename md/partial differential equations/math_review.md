@@ -29,6 +29,13 @@ F_x & F_y & F_z
 \end{vmatrix}
 $$
 
+#### Line integral
+$$ \int_{\mathcal{C}} F(\bold{r})\mathrm{d}s=\int_a^b F(\bold{r}(t))|\bold{r}'(t)|\mathrm{d}t $$
+where $\bold{r}: [a, b] \rightarrow \mathcal{C}$ is a bijective parametrization of $\mathcal{C}$
+##### Gradient theorem (fundamental theorem of line integral)
+$$\int_a^b\nabla F(\bold{r}(t))\cdot \mathrm{d}\bold{r}=F(\bold{r}(b))-F(\bold{r}(a))$$
+Note: $\mathrm{d}\bold{r} = \bold{r}'(t)\mathrm{d}t$
+
 #### Green's theorem
 $$ \iint_{D} \bigg(\frac{\partial{M}}{\partial{x}}-\frac{\partial{L}}{\partial{y}}\bigg) \mathrm{d}x\mathrm{d}y= \oint_{\partial D} L \mathrm{d}x+M\mathrm{d}y$$
 Intepretation: macroscopic circulation around $\partial D$ is the same as sum of microscopic circulation inside $D$ 
@@ -50,4 +57,5 @@ Setting $\bold{k}=0$, we get Green's theorem. Stoke's theorem is just Green's th
 ##### Ref:
 Green's theorem, Divergence theorem, and Stoke's theorem
 https://www.youtube.com/watch?v=PIoqMNL7tV0&list=PLHXZ9OQGMqxfW0GMqeUE1bLKaYor6kbHa&index=39
+
 
