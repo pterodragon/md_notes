@@ -59,3 +59,24 @@ Green's theorem, Divergence theorem, and Stoke's theorem
 https://www.youtube.com/watch?v=PIoqMNL7tV0&list=PLHXZ9OQGMqxfW0GMqeUE1bLKaYor6kbHa&index=39
 
 
+#### Types of convergence
+##### Pointwise convergece
+Let $f_n(x): I \rightarrow \real, n\ge0$ be a sequence of functions, then
+
+$f_n(x)$ converges pointwise on $I$ $\Leftrightarrow$ $f_n(x_0)$ converges $\forall x_0 \in I$
+
+The limit is defined by
+$$
+f(x_0) = \lim_{n\rightarrow \infty}f_n(x_0), \quad x_0 \in I \newline
+f(x) = \lim_{n\rightarrow \infty}f_n(x), \quad x \in I; \newline
+f_n(x) \rightarrow f(x) \quad \text{on}\  I
+$$
+
+##### Uniform convergece
+Let $f_n(x): I \rightarrow \real, n\ge0$ be a pointwise convergent sequence of functions, and $f(x) = \lim_{n\rightarrow\infty}f_n(x)$ on $I$
+
+$f_n(x)$ converges uniformly on $I$ to $f(x)$, i.e. $f_n(x) \rightrightarrows f(x)$ on $I$ $\Leftrightarrow$ on $I$,
+$$
+\epsilon > 0, n \gg 1 \Rightarrow |f_n(x)-f(x)| < \epsilon
+$$
+$n \gg 1$ means for some $n > N_\epsilon$ depending only on $\epsilon$ *but not $x$*

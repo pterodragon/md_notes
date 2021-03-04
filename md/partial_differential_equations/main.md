@@ -462,7 +462,7 @@ Case 2:
 - $a_0 + a_l < -a_0a_ll \Rightarrow$ $\lambda_0 < 0, \lambda_n > 0, n > 0$ 
 
 #### Conclusion
-Let
+Solution:
 $$
 u(x,t) = \sum_n T_n(t)X_n(x)
 $$
@@ -474,4 +474,277 @@ A_n \cos(\sqrt{\lambda_n}ct) + B_n \sin(\sqrt{\lambda_n}ct) \quad  & \text{for w
 \end{cases}
 $$
 
+#### 5.1 
+Fourier sine series:
+$$
+\phi(x) = \sum_{n = 1}^{\infty}A_n \sin\frac{n\pi x}{l}, \quad x\in (0, l)
+$$
+
+$$
+A_m = \frac{2}{l}\int_0^l \phi(x) \sin\frac{m \pi x}{l} \mathrm{d} x
+$$
+
+Fourier cosine series:
+
+$$
+\phi(x) = \frac{1}{2}A_0 + \sum_{n = 1}^{\infty}A_n \cos\frac{n\pi x}{l}, \quad x\in (0, l)
+$$
+
+$$
+A_m = \frac{2}{l}\int_0^l \phi(x) \cos\frac{m \pi x}{l} \mathrm{d} x
+$$
+
+Full Fourier series:
+
+$$
+\phi(x) = \frac{1}{2}A_0 + \sum_{n = 1}^{\infty}\Big(A_n \cos\frac{n\pi x}{l} + B_n \cos\frac{n\pi x}{l}\Big), \quad x\in (-l, l)
+$$
+All the eigenfunctions are $\{1, \cos(n\pi x/l), \sin(n\pi x/l)| n>0\}$. Multiply any of them and integrate over the interval gives $0$
+
+$$
+A_n = \frac{1}{l}\int_0^l \phi(x) \cos\frac{n \pi x}{l} \mathrm{d} x, \quad n\ge 0
+$$
+
+$$
+B_n = \frac{1}{l}\int_0^l \phi(x) \sin\frac{n \pi x}{l} \mathrm{d} x, \quad n > 0
+$$
+
+##### Fourier Series and boundary conditions
+Fourier {cosine, sine} series can be regarded as expansion of arbitrary function which is {even, odd} and has period $2l$ defined for $x\in \real$
+
+From 5.1,
+- $u(x, 0) = u(l, 0) = 0$ Dirichlet BCs correspond to the odd extension 
+- $u_x(x, 0) = u_x(l, 0) = 0$ Neumann BCs correspond to the even extension 
+- $u(l, t) = u(-l, t), u_x(l, t) = u_x(-l, t)$ Periodic BCs correspond to the periodic extension 
+
+#### Complex form of full Fourier series
+$$
+\phi(x) = \sum_{n=-\infty}^{\infty}c_n e^{in\pi x/l}
+$$
+$$
+c_n = \frac{1}{2l}\int_{-l}^{l}\phi(x) e^{-in\pi x/l} \mathrm{d}x$$
+
+#### Orthogonality and general Fourier series
+For $f(x), g(x): [a, b] \rightarrow \real$
+
+Inner product:
+$$
+(f, g) := \int_a^bf(x)g(x)\mathrm{d}x
+$$
+
+Let 
+$$
+-X_1'' = \frac{\mathrm{d}^2X_1}{\mathrm{d}x^2}=\lambda_1X
+$$
+$$
+-X_2'' = \frac{\mathrm{d}^2X_2}{\mathrm{d}x^2}=\lambda_2X
+$$
+
+Every eigenfunction is orthogonal to each other
+
+Green's second identity:
+$$
+\tag{5.1.3}
+\int_a^b(-X_1''X_2+X_1X_2'')\mathrm{d}x = (-X_1'X_2+X_1X_2')\Big|^a_b
+$$
+
+Using different boundary conditions:
+
+- Dirichlet: $X_1(a)=X_1(b) =X_2(a)=X_2(b) = 0$
+- Neumann: $X_1'(a)=X_1'(b) =X_2'(a)=X_2'(b) = 0$
+- Periodic: $X_j(a)=X_j(b), X_j'(a)=X_j'(b), j \in \{1,2\}$
+- Robin
+
+For all cases, right side of $(5.1.3) = 0$. $(5.1.3)$ reduces to:
+$$
+(\lambda_1 - \lambda_2)\int_a^bX_1X_2\mathrm{d}x = 0
+$$
+$\therefore X_1 \bot X_2$
+
+##### Symmetric boundary conditions
+Given any pair of boundary conditions
+$$
+\tag{5.1.4}
+\alpha_1X(a) + \beta_1X(b)+\gamma_1X'(a) + \delta_1X'(b) = 0 \newline
+\alpha_2X(a) + \beta_2X(b)+\gamma_2X'(a) + \delta_2X'(b) = 0
+$$
+Such boundary condition is called *symmetric* if:
+$$
+f'(x)g(x) - f(x)g'(x) \Big|_{x=a}^{x=b} = 0
+$$
+for any $f, g$ that satisfy the pair of boundary conditions
+
+All standard boundary conditions are symmetric
+
+##### Theorem 1:
+For symmetric boundary conditions, any 2 eigenfunctions that correspond to different eigenvalues are orthogonal. $\therefore$ For any function expanded in a series of these eigenfunctions, the coefficients are determined
+
+Proof:
+
+Let $X_n(x)$ be the eigenfunction with eigenvalue $\lambda_n$
+If
+$$
+\phi(x) = \sum_nA_nX_n(x)
+$$
+is a convergent series,
+$$
+(\phi,X_m) = A_m(X_m,X_m)
+$$
+$$
+A_m = \frac{(\phi,X_m)}{(X_m,X_m)} = \frac{(\phi,X_m)}{c_m}
+$$
+
+Caution:
+
+1. Mind the convergence of the series
+2. $\lambda_1 = \lambda_2$ $\Rightarrow$ the $X_1, X_2$ may not be orthogonal but they can be made so by Gram-Schmdit orthogonalization procedure
+
+#### Complex eigenvalues
+Inner product:
+
+For $f(x), g(x): [a, b] \rightarrow \Complex$
+
+$$
+(f, g) := \int_a^bf(x)\overline{g(x)}\mathrm{d}x
+$$
+
+Boundary condition $(5.1.4)$ is called symmetric or hermitian if:
+$$
+f'(x)\overline{g(x)} - f(x) \overline{g'(x)} \Big|_{x=a}^{x=b} = 0
+$$
+
+##### Theorem 2:
+
+Under the same condition as Theorem 1, all eigenvalues are real, and all eigenfunctions can be chosen to be real valued
+
+#### Negative eigenvalues
+
+##### Theorem 3:
+Under the same condition as Theorem 1, if
+$$
+f(x)f'(x)\Big|_{x=a}^{x=b} \le 0
+$$
+for all $f(x)$ satisfying the BCs, then there is no negative eigenvalue
+
+This is true for Dirichlet, Neumann, and Periodic conditions but not for some Robin conditions
+
+#### 5.4 Completeness
+
+Consider the eigenvalue problem 
+$$
+\tag{5.4.1}
+X''+\lambda X = 0, x\in(a, b)
+$$
+with symmetric BC
+
+Theorem 1: There are infinite number of eigenvalues. $\lambda_n \rightarrow \infty$
+
+For any $f: (a, b) \rightarrow \Complex$, its Fourier coefficients are defined as:
+$$
+A_n = \frac{(f, X_n)}{(X_n, X_n)} = \frac{\int_a^bf(x) \overline{X_n(x)}\mathrm{d}x}{\int_a^b|X_n(x)|^2\mathrm{d}x}
+$$
+The Fourier series is $\sum_nA_nX_n(x)$
+
+##### Convergence theorems:
+
+Let $f: [a, b] \rightarrow \real$, and consider the Fourier series of $(5.4.1)$
+
+Theorem 2: Uniform convergence
+
+The Fourier series $\sum A_nX_n(x)$ converges uniformly on $[a, b]$ to $f(x)$ if
+
+1. $f(x), f'(x), f''(x)$ exist and are continuous for $x\in [a,b]$
+2. $f(x)$ satisfy the BCs
+
+Note: For sine, cosine, full Fourier expansion, $f''(x)$ does not have to exist
+
+Theorem 3: $L^2$ convergence
+
+The Fourier series converges to $f(x)$ in the mean-square sense in $(a, b)$ if
+$$
+\int_a^b|f(x)|^2\mathrm{d}x < \infty
+$$
+
+Theorem 4: Pointwise convergence of classical Fourier series
+
+(i): $f(x)$ is continuous on $[a, b]$ and $f'(x)$ is piecewise continuous on $[a, b]$ $\Rightarrow$ The classical Fourier series converges to $f(x)$ pointwise on $(a, b)$ 
+
+(ii): more generally, $f(x)$ is only piecewise continuous on $[a, b]$ and $f'(x)$ is piecewise continuous on $[a, b]$ $\Rightarrow$ The classical Fourier series converges at every point $x\in \real$ and 
+$$
+f(x) = \sum_nA_nX_n(x) = \frac{1}{2}[f(x^+) + f(x^-)], x \in (a, b)
+$$
+
+Theorem 5: Least square approxmiation
+
+Let ${X_n}$ be any orthogonal set of functions, $\|f\| < \infty$, $N \in \Z^+$ be fixed, then $c_i = A_i, i > 0$ minimizes
+$$
+\Bigg\|f-\sum_{n = 1}^Nc_nX_n\Bigg\|
+$$
+where $A_i$ are the Fourier coefficients in $f = \sum A_nX_n$
+
+Bessel's inequality:
+$$
+\tag{5.4.18}
+\sum_{n = 1}^\infty A_n^2 \int_a^b|X_n(x)|^2\mathrm{d}x \le \int_a^b|f(x)|^2 \mathrm{d}x
+$$
+Norm notation: $\sum_{n = 1}^{\infty}A_n^2\|X_n\|^2 \le \|f\|^2 \Leftrightarrow \sum_{n = 1}^{\infty}\frac{|(f, X_n)|^2}{\|X_n\|^2} \le \|f\|^2$
+
+Theorem 6: The Fourier series of $f$ converges to $f$ in the mean square sense $\Leftrightarrow$
+$$
+\tag{5.4.19}
+\sum_{n = 1}^\infty |A_n|^2 \int_a^b|X_n(x)|^2\mathrm{d}x = \int_a^b|f(x)|^2 \mathrm{d}x
+$$
+which is the Parseval's equality
+
+Definition: The infinite orthogonal set of functions $\{X_n\}$ is called *complete* if $(5.4.19)$ is true $\forall f$ s.t $\int_a^b|f|^2\mathrm{d}x < \infty$
+
+Corollary 7: $\int_a^b|f|^2\mathrm{d}x < \infty$ $\Rightarrow$ $(5.4.19)$ is true
+
+#### 5.6 Inhomogenous boundary condition
+
+Diffusion equation with sources at both end:
+$$
+u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
+u(0, t) = h(t), u(l, t) = j(t) \newline
+u(x, 0) = 0
+$$
+Separated solution $u = X(x)T(t)$ will not fit the boundary condition (considering \phi(x) = 0)
+##### Expansion method
+From 4.1, the correct expansion for $u$ is the Fourier sine series
+$$
+u(x,t) = \sum_{n=1}^{\infty}u_n(t)\sin\frac{n\pi x}{l}
+$$
+for some coefficient $u_n(t)$, by the completeness theorems any function in $(0, l)$ can be expanded this way, and by 5.1
+$$
+u_n(t) = \frac{2}{l}\int_0^l u(x, t)\sin\frac{n\pi x}{l} \mathrm{d}x
+$$
+Caution: $u$ can't be differentiated term by term.
+
+By considering $\frac{2}{l}\int_0^l(u_t-ku_{xx})\sin\frac{n\pi x}{l}\mathrm{d}x = 0$ (integral valid as thing inside is continuous), an ODE involving $u_n$ can be reached, and with $u_n(0) = 0$,
+
+$$
+u_n(t) = Ce^{-\lambda_nkt}-2n\pi l^{-2}k\int_0^te^{-\lambda_nk(t-s)}[(-1)^nj(s)-h(s)]\mathrm{d}s
+$$
+
+##### Method of shifting the data
+Consider the inhomogenous wave problem:
+$$
+u_{tt} - c^2u_{xx} = f(x, t) \newline
+u(0, t) = h(t), u(l, t) = k(t) \newline
+u(x, 0) = \phi(x), u_t(x, 0) = \psi(x)
+$$
+Let
+$$
+U(x,t) = \Big(1-\frac{x}{l}\Big)h(t) + \frac{x}{l}k(t)
+$$
+which satisfy the BCs,
+and let
+$$
+v(x, t) = u(x, t) - U(x,t)
+$$
+Then $v$ satisfy the same problem but with 0 boundary data, with initial data $\phi(x) - U(x, 0), \psi(x) - U_t(x, 0)$
+
+*The BC and the DE can be simultaneously made homogeneous by subtracting any function that satisfies them*
+
+e.g. when $h, k, f(x)$  are all independent of time, then $-c^2u_{xx}=f(x), U(0) = h, U(l) = k$, and $v(x, t) = u(x, t) - U(x)$ solves the problem with 0 boundary data, zero on RHS of DE, and initial data $\phi(x) - U(x), \psi(x)$
 
