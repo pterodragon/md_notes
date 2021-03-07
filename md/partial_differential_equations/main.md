@@ -474,7 +474,14 @@ A_n \cos(\sqrt{\lambda_n}ct) + B_n \sin(\sqrt{\lambda_n}ct) \quad  & \text{for w
 \end{cases}
 $$
 
-#### 5.1 
+#### 5.1 Fourier series coefficients
+Key observation:
+$$
+\int_0^l\sin\frac{n\pi x}{l}\sin\frac{m\pi x}{l}\mathrm{d}x = 0, \quad \text{if } m \ne n
+$$
+$$
+\int_0^l\cos\frac{n\pi x}{l}\cos\frac{m\pi x}{l}\mathrm{d}x = 0, \quad \text{if } m \ne n
+$$
 Fourier sine series:
 $$
 \phi(x) = \sum_{n = 1}^{\infty}A_n \sin\frac{n\pi x}{l}, \quad x\in (0, l)
@@ -708,7 +715,7 @@ u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
 u(0, t) = h(t), u(l, t) = j(t) \newline
 u(x, 0) = 0
 $$
-Separated solution $u = X(x)T(t)$ will not fit the boundary condition (considering \phi(x) = 0)
+Separated solution $u = X(x)T(t)$ will not fit the boundary condition (considering $\phi(x) = 0$)
 ##### Expansion method
 From 4.1, the correct expansion for $u$ is the Fourier sine series
 $$
@@ -742,9 +749,299 @@ and let
 $$
 v(x, t) = u(x, t) - U(x,t)
 $$
-Then $v$ satisfy the same problem but with 0 boundary data, with initial data $\phi(x) - U(x, 0), \psi(x) - U_t(x, 0)$
+Then $v$ satisfy the same problem but with 0 boundary data, with initial data $\phi(x) - U(x, 0), \psi(x) - U_t(x, 0)$, RHS replaced by $f - U_{tt}$
 
 *The BC and the DE can be simultaneously made homogeneous by subtracting any function that satisfies them*
 
-e.g. when $h, k, f(x)$  are all independent of time, then $-c^2u_{xx}=f(x), U(0) = h, U(l) = k$, and $v(x, t) = u(x, t) - U(x)$ solves the problem with 0 boundary data, zero on RHS of DE, and initial data $\phi(x) - U(x), \psi(x)$
+e.g. when $h, k, f(x)$  are all independent of time, then $-c^2U_{xx}=f(x), U(0) = h, U(l) = k$, and $v(x, t) = u(x, t) - U(x)$ solves the problem with 0 boundary data, zero on RHS of DE, and initial data $\phi(x) - U(x), \psi(x)$
 
+#### 6.1 Laplace's equation
+If diffusion or wave process is stationary, i.e. independent of time, then $u_{t} \equiv 0, u_{tt} \equiv 0$, and both equations reduce to Laplace's equation:
+$$
+u_{xx} = 0, \quad \text{(1D)} \newline
+\nabla\cdot\nabla u = \Delta u = u_{xx} + u_{yy} = 0, \quad \text{(2D)}
+$$
+A solution to Laplace's equation is called a *harmonic function*
+
+Inhomogenous version (Poisson's equation):
+$$
+\Delta u = f
+$$
+
+*Analytic functions* are functions which can be expressed as a power series of $z$:
+$$
+f(z) = \sum_{n = 0}^{\infty}a_nz^n
+$$
+By equality of mixed deriatives, real and imaginary parts of analytic functions are harmonic
+
+Basic problem:
+$$
+\Delta u = f, \quad \bold{x} \in D, \newline
+u = h \quad \text{or} \quad \frac{\partial u}{\partial n} =h \quad \text{or} \quad \frac{\partial u}{\partial n}+au=h, \quad \bold{x} \in\partial D
+$$
+
+##### Maximum principle
+
+Let $D$ be a connected bounded open set (in 2D or 3D space). $u$ is a harmonic function in $D$ that is continuous on $\overline{D} = D \cup\partial D$ $\Rightarrow$ maximum and minimum of $u$ are attained on $\partial D$ and no where inside unless when $u$ is constant
+
+Max/Min existence on boundary is proven by 2nd derivative test and considering $v(\bold{x})=u(\bold{x}) + \epsilon|\bold{x}|^2, \epsilon > 0$. Absence of min/max inside -> see 6.3
+
+##### Uniqueness of Dirichlet problem
+Proven by letting two solutions $u, v$ and let $w = u - v$, and use the maximum principle
+
+##### Invariance in 2 dimensions
+$$
+\Delta u(\bold{x})=\Delta u(\bold{x}')
+$$
+for $\bold{x}'$ being a translation or rotation of $\bold{x}$
+
+By the rotational invariance of the 2D laplacian operator, by letting $x = r\cos\theta, y = r\sin\theta$, the transformation has the Jacobian matrix:
+$$
+J = \begin{bmatrix}
+\frac{\partial x}{\partial r} & \frac{\partial y}{\partial r} \\[1mm]
+\frac{\partial x}{\partial \theta} & \frac{\partial y}{\partial \theta} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\theta& \sin\theta \\
+-r\sin\theta& r\cos\theta
+\end{bmatrix}
+$$
+$$
+\tag{6.1.5}
+\Delta_2=\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} = \frac{\partial^2}{\partial r^2} + \frac{1}{r}\frac{\partial}{\partial r} + \frac{1}{r^2}\frac{\partial^2}{\partial \theta^2}
+$$
+
+It's natural to look for harmonic function that are rotationally invariant, by $(6.1.5)$
+$$
+0 = u_{xx} + u_{yy} = u_{rr} + \frac{1}{r}u_r
+$$
+if $u$ does not depend on $\theta$. The solution to the ODE is:
+$$
+u = c_1 \log r + c_2
+$$
+
+#### Invariance in 3 dimension
+$$
+\Delta u(B\bold{x}) = \Delta u(\bold{x})
+$$
+where $B$ is an orthogonal matrix, $BB^T=I$
+
+It is natural to use spherical coordinate:
+$$
+r = \sqrt{x^2+y^2+z^2}=\sqrt{s^2+z^2} \newline
+s = \sqrt{x^2+y^2} \newline
+x = s\cos\phi, \quad z=r\cos\theta \newline
+y = s\sin\phi, \quad s=r\sin\theta
+$$
+
+$$
+\Delta_3 = \frac{\partial^2}{\partial r^2} + \frac{2}{r}\frac{\partial}{\partial r} + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial \theta}\sin\theta \frac{\partial}{\partial \theta} + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial \phi^2}
+$$
+
+Harmonic functions that don't change under rotation in 3D:
+$$
+0 = \Delta_3u = u_{rr} + \frac{2}{r}u_r
+$$
+Solving:
+$$
+u = -c_1\frac{1}{r}+c_2 \newline
+\frac{1}{r} = (x^2 + y^2 + z^2)^{-\frac{1}{2}}
+$$
+
+
+#### 6.2 Rectangles and cubes
+If the domain is of a special geometry, the PDE can be solve in the same way as ch 4.
+
+1. Look for separated the solution of the PDE
+2. Put in the homogeneous BCs to get the eigenvalues (require special geometry)
+3. Sum the series
+4. Put in inhomogeneous initial or BCs 
+
+#### 6.3 Poisson's formula
+Dirichlet problem for a circle:
+$$
+u_{xx} + u_{yy} = 0, \quad x^2 + y^2 < a^2 \newline
+u = h(\theta),  \quad x^2 + y^2 = a^2
+$$
+By separation solution in polar coordinate form $u=R(r)\Theta(\theta)$, a simultaneous pair of ODE occurs. Imposing the BC $\Theta(\theta + 2\pi) = \Theta(\theta)$ (periodic BC), requiring $u < \infty$ at $r = 0$ and explicitly calculating the summation:
+
+Poisson's formula:
+$$
+u(r, \theta) = (a^2 - r^2)\int_0^{2\pi}\frac{h(\phi)}{a^2-2ar\cos(\theta-\phi)+r^2}\frac{\mathrm{d}\phi}{2\pi}
+$$
+
+Alternate notation by letting $\bold{x} = (r, \theta), \bold{x}' = (a,\theta)$, and changing the integral to a line integral around the arc of a full circle:
+$$
+u(\bold{x}) = \frac{a^2-|\bold{x}|^2}{2\pi a}\int_{|\bold{x}'|=a }\frac{u(\bold{x}')}{|\bold{x} - \bold{x}'|^2}\mathrm{d}s'
+$$
+for $\bold{x} \in D$, where $u(\bold{x}') = h(\phi)$
+
+##### Theorem 1
+Let $h(\phi) = u(\bold{x}')$ be continous function on the circle $\partial D$. Then the Poisson's formula provides the only harmonic function in $D$ s.t.
+$$
+\lim_{\bold{x} \rightarrow \bold{x}_0} u(\bold{x)}=h(\bold{x}_0), \forall \bold{x}_0 \in \partial D
+$$
+This means $u(\bold{x})$ is continuous on $\overline{D} = D \cup \partial D$
+
+##### Mean value property
+Let $u$ be a harmonic function in a disk $D$ (continuous on $\overline{D}$). Then $u( \bold{0})$ is the average of $u$ on $\partial D$ 
+
+##### Differentiability
+Let $u$ be a harmonic function in any open set $D$ of the plane. Then $u(\bold{x)} = u(x, y)$ has all partial derivatives of all order in $D$.
+
+#### 7.1 Green's first identity
+From product rule
+$$ (vu_x)_x = v_xu_x + vu_{xx}
+$$
+ND case and summing:
+$$
+\nabla \cdot (v\nabla u) = \nabla v\cdot \nabla u + v\Delta u
+$$
+Using the divergence theorem, Green's first identity:
+
+$$
+\tag{7.1.G1}
+\iint_{\partial D}v\frac{\partial u}{\partial \bold{n}}\ \mathrm{d}S = \iiint_D \nabla v \cdot \nabla u \ \mathrm{d}\bold{x} + \iiint_D v \Delta u \ \mathrm{d}\bold{x}
+$$
+Taking $v\equiv 1$,
+$$
+\tag{7.1.2}
+\iint_{\partial D}\frac{\partial u}{\partial \bold{n}}\ \mathrm{d}S = \iiint_D \Delta u \ \mathrm{d}\bold{x}
+$$
+For the Neumann problem
+$$
+\begin{cases}
+\Delta u = f(x), \quad x \in D \\
+\frac{\partial u}{\partial \bold{n}} = h(x), \quad x \in \partial D
+\end{cases}
+$$
+Data are required to satisfy:
+$$
+\iint_{\partial D}h\ \mathrm{d}S = \iiint_D f \ \mathrm{d}\bold{x}
+$$
+This problem has no unique solution
+
+#### Mean value property
+The average value of any harmonic function over any sphere equals the value at the center.
+
+Proven by $\Delta u(\bold{x}) = 0, |\bold{x}|\le a$, $\frac{\partial u}{\partial \bold{n}} = \frac{\partial u}{\partial r}$ where $r = (x^2 + y^2 + z^2)^{1/2} = |\bold{x}|$, and by changing to spherical coordinates
+
+$$
+\frac{1}{\text{area of }S} \iint_Su\ \mathrm{d}S = u(\bold{0})
+$$
+
+#### Maximum principle
+For 3D, if $D$ is any solid region, a nonconstant harmonic function in $D$ cannot take its maximum value inside $D$ but only on $\partial D$
+
+#### Uniqueness
+applies for Dirichlet and Neumann problems. Proven by difference of two solutions $u - v$, using Green's first identity in between the proof
+
+#### Dirichlet's principle
+Energy:
+$$
+E[w] = \frac{1}{2}\iiint_D|\nabla w|^2\ \mathrm{d} \bold{x}
+$$
+The state of lowest energy of any physical system is called a *ground state*, then harmonic functions are the preferred state:
+
+Let $u(\bold{x})$ be the unique harmonic function in $D$ that satisfies $w = h(\bold{x)}$ on $\partial D$. Let $w(\bold{x)}$ be any function in $D$ that satisfies the same condition. Then $E[w] \ge E[u]$
+
+#### Green's Second identity
+$$
+\tag{7.2.G2}
+\iiint_D(u\Delta v-v \Delta u)\ \mathrm{d} \bold{x} = \iint_{\partial D}\Big(u\frac{\partial v}{\partial \bold{n}}-v\frac{\partial u}{\partial \bold{n}}\Big)\ \mathrm{d}S
+$$
+Proven by switching $u, v$ from $(G1)$ and subtracting.
+
+A boundary condition is called symmetric if RHS of $(G2)$ vanishes
+#### Representation Formula
+For $\Delta u = 0, \bold{x} \in D$, any harmonic function can represented as:
+$$
+\tag{7.2.1}
+u(\bold{x}_0)=\iint_{\partial D}\Big[-u(\bold{x})\frac{\partial}{\partial \bold{n}}\Big(\frac{1}{|\bold{x}-\bold{x}_0|}\Big)+\frac{1}{|\bold{x}-\bold{x}_0|}\frac{\partial u}{\partial \bold{n}}\Big]\frac{\mathrm{d}S}{4\pi}
+$$
+$$
+=\iint_{\partial D}\Big(u\frac{\partial v}{\partial \bold{n}} - v\frac{\partial u}{\partial \bold{n}}\Big)\mathrm{d}S, \quad v = -\frac{1}{4\pi |\bold{x}-\bold{x}_0|}
+$$
+
+#### Green's function
+$v = -\frac{1}{4\pi |\bold{x}-\bold{x}_0|}$ is harmonic except at $\bold{x}_0$
+
+Defined in domain $D$ for the operator $-\Delta$, and for a point $\bold{x}_0 \in D$
+
+1. $G(\bold{x}) \in C^2$ and $\Delta G = 0$ for $\bold{x} \in D - \{\bold{x}_0\}$
+2. $G(\bold{x}) = 0$ for $\bold{x} \in \partial D$
+3. The function $G(\bold{x}) + \frac{1}{4\pi |\bold{x}-\bold{x}_0|} \in C^2$ is finite at $\bold{x}_0$ and harmonic at $\bold{x}_0$
+      - i.e. $\Delta(G+v)=0, \quad \bold{x}\in D$
+
+$G(\bold{x}, \bold{x}_0)$ is the usual notation
+
+Theorem 1: The solution to the Dirichlet problem
+$$
+\Delta u = 0, \quad \bold{x} \in D \newline
+u = h, \quad \bold{x}\in \partial D
+$$
+is
+$$
+\tag{7.3.1}
+u( \bold{x}_0)=\iint_{\partial D}h( \bold{x})\frac{\partial G( \bold{x}, \bold{x}_0) }{\partial \bold{n}}\mathrm{d}S
+$$
+
+#### Symmetry of Green's function
+$$
+G(\bold{x}, \bold{x}_0) = G(\bold{x}_0, \bold{x}), \quad \bold{x} \ne \bold{x}_0
+$$
+AKA *principle of reciprocity*
+
+Theorem 2: The solution to the problem
+$$
+\Delta u = f, \quad \bold{x} \in D \newline
+u = h, \quad \bold{x}\in \partial D
+$$
+is
+$$
+u( \bold{x}_0)=\iint_{\partial D}h( \bold{x})\frac{\partial G( \bold{x}, \bold{x}_0) }{\partial \bold{n}}\mathrm{d}S + \iiint_Df(\bold{x})G(\bold{x}, \bold{x}_0) \mathrm{d}\bold{x}
+$$
+Proven by Green's second identity and same procedure as deriving $(7.2.1)$
+
+#### Half space
+$$
+\Delta u = 0, \quad D = z > 0 \newline
+u(x, y, 0) = h(x, y)
+$$
+Solved by using Green's function and method of reflection. Green's function for $D$ is
+$$
+G(\bold{x}, \bold{x}_0) = -\frac{1}{4\pi|\bold{x}-\bold{x}_0|} + \frac{1}{4\pi|\bold{x}-\bold{x}^*_0|}
+$$
+where $\bold{x}^* =(x,y,-z)$
+
+Solution:
+$$
+u(\bold{x}_0) = \frac{z_0}{2\pi}\iint_{\partial D}\frac{h(\bold{x})}{|\bold{x}-\bold{x}_0|^3}\mathrm{d}S
+$$
+
+#### Sphere
+$$
+\Delta u = 0, \quad |\bold{x}| < a \newline
+u = h, \quad |\bold{x}| = a
+$$
+Green's function of the ball is:
+$$
+\tag{7.4.6}
+G(\bold{x}, \bold{x}_0) = -\frac{1}{4\pi \rho}+\frac{a}{|\bold{x}_0|}\frac{1}{4\pi \rho^*}
+$$
+where $\rho = |\bold{x}-\bold{x}_0|, \rho^* = |\bold{x}-\bold{x}_0^*|, |\bold{x}_0||\bold{x}_0^*|:=a^2, \bold{x}_0^*=\frac{a^2\bold{x}_0}{|\bold{x}_0|^2}$ by considering congruent triangles
+$$
+\tag{7.4.10}
+G(\bold{x}, \bold{x}_0) = -\frac{1}{4\pi |\bold{x}-\bold{x}_0|}+\frac{1}{4\pi|\frac{r_0}{a}\bold{x}-\frac{a}{r_0}\bold{x}_0|}
+$$
+where $r_0 = |\bold{x}_0|$
+$$
+\tag{7.4.11}
+G(\bold{x}, \bold{0}) = -\frac{1}{4\pi |\bold{x}|}+\frac{1}{4\pi a}
+$$
+Solution by calculating $\frac{\partial G}{\partial \bold{n}}$:
+$$
+\tag{7.4.16}
+u(\bold{x}_0) = \frac{a^2-|\bold{x}_0|^2}{4\pi a}\iint_{|\bold{x}|=a}\frac{h(\bold{x})}{|\bold{x}-\bold{x}_0|^3}\mathrm{d}S
+$$

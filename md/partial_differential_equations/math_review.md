@@ -1,5 +1,6 @@
 ### Math review
 
+
 #### Cross product
 $$ \bold{a} \times \bold{b} = \|\bold{a}\| \|\bold{b}\| \sin(\theta) \bold{\hat{n}} $$
 where $\bold{\hat{n}}$ is a unit vector $\bot$ to the plane containing $\bold{a}$ and $\bold{b}$ according to right-hand rule
@@ -14,10 +15,42 @@ b_1 & b_2 & b_3 \\
 $$ \boxed{\bold{a} \times \bold{b} = - ( \bold{b} \times \bold{a} )}, \boxed{\bold{a} \times \bold{a} = \bold{0}} $$
 $$ \boxed{\bold{i} \times \bold{j} = \bold{k}}, \boxed{\bold{j} \times \bold{k} = \bold{i}}, \boxed{\bold{k} \times \bold{i} = \bold{j}} $$
 
+#### Gradient
+$$
+\nabla f = \sum_{i = 1}^{n} \frac{\partial f}{\partial x_i} \hat{x_i} = \frac{\partial f}{\partial \bold{x}}
+$$
+
+$\nabla f(\bold{x})$ gives the direction of largest increase and its magnitude gives the rate of increase
+
+$S: f(x, y) = 0 \Rightarrow \nabla f$ gives the normal to the surface S. 
+
+#### Directional derivatives
+$$ \nabla_{\bold{v}} f(\bold{x}) = \bold{v}\cdot \frac{\partial f(\bold{x})}{\partial\bold{x}} = \bold{v}\cdot \nabla f
+$$
+Taking $\bold{v} = \lang1, 0, 0\rang$ gives $\frac{\partial f}{\partial x_1}$. Directional derivative is a weighted sum of partial derivatives w.r.t. $x_i$
+
+Normal derivative (normal to a surface $S$ etc.):
+$$ \frac{\partial f}{\partial \bold{n}} = \bold{n}\cdot\frac{\partial f}{\partial \bold{x}} = \bold{n}\cdot\nabla f
+$$
+
+#### Change of coordinate system
+
+##### Spherical coordinate
+$$
+(x, y, z) = (r\sin\theta\cos\phi, r\sin\theta\sin\phi,r\cos\theta) \newline
+(r, \theta, \phi) = (\sqrt{x^2+y^2+z^2}, \arccos\frac{z}{\sqrt{x^2+y^2+z^2}},\arctan{\frac{y}{x}})
+$$
+
+$$
+\nabla f=\frac{\partial f}{\partial r}\hat\bold{r}+\frac{1}{r}\frac{\partial f}{\partial \theta}\hat\boldsymbol{\theta}+\frac{1}{r^2\sin\theta}\frac{\partial f}{\partial \phi}\hat\boldsymbol{\phi}
+$$
+
+Derivation ref: https://physics.stackexchange.com/questions/78510/derive-vector-gradient-in-spherical-coordinates-from-first-principles
+
 #### Divergence
 $$ \mathrm{div} \ \bold{F} = \nabla \cdot \bold{F} $$
 
-$\nabla \cdot \bold{F}|_{\bold{x_0}} > 0$ means there's positive flow outwards at $\bold{x_0}$
+$\nabla \cdot \bold{F}|_{\bold{x}_0} > 0$ means there's positive flow outwards at $\bold{x}_0$
 
 #### Curl
 $$ \mathrm{curl} \ \bold{F} = \nabla \times \bold{F} $$
