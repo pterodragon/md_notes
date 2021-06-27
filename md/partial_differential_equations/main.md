@@ -1,15 +1,15 @@
-### Math review
+# Math review
 
 see `math_review.md`
 
-#### 1.4 Initial and boundary conditions
+## 1.4 Initial and boundary conditions
 (D) $u$ is specified "Dirichlet condition"
 
 (N) the normal derivative $\frac{\partial u}{\partial n}$ is specified "Neumann condition"
 
 \(R\) $\frac{\partial u}{\partial n} + au$ is specified "Robin condition"
 
-#### 1.6 Types of second order PDE
+## 1.6 Types of second order PDE
 $$ a_{11}u_{xx}+2a_{12}u_{xy}+a_{22}u_{yy}+a_1u_x+a_2u_y+a_0 = 0 $$
 Theorem 1: By linear transformation of the independent variables, the equation can be reduced to:
 
@@ -23,14 +23,14 @@ $$ u_{xx} - u_{yy} + \cdots = 0 $$
 $$ u_{xx} + \cdots = 0 $$
 where $\cdots$ denotes terms of order 1 or 0.
 
-#### 2.1 Wave equation
+## 2.1 Wave equation
 
 $$ u_{tt} = c^2 u_{xx}, \quad x \in \real$$
 general solution:
 $$ u(x, t) = f(x + ct) + g(x - ct) $$
 where $f, g \in C^2$ functions
 
-##### Initial value problem
+### Initial value problem
 
 with the initial conditions
 $$ u(x, 0) = \phi(x), \quad u_t(x, 0) = \psi(x) $$
@@ -38,9 +38,9 @@ There's a unique solution
 $$ u(x, t) = \frac{1}{2}[\phi(x + ct) + \phi(x - ct)] + \frac{1}{2c}\int^{x + ct}_{x - ct}\psi(s)\mathrm{d}s $$
 where $\phi \in C^2$
 
-#### 2.2 Causality and energy
+## 2.2 Causality and energy
 
-##### Causality
+### Causality
 $\phi(x)$ is a pair of waves travelling in either direction at speed $c$ at half the original amplitude. $\psi(x)$ the initial velocity may cause part of the wave speed to be $\le c$ spreading out in both direction but can't be $\gt c$
 
 The *domain of influence* of $(x_0, t)$ can only affect the solution for $t > 0$ in a triangular region in the $x\text{-}t$ plane
@@ -51,17 +51,17 @@ i.e. the domain of influence of an interval $|x| \le R$ is the sector $|x| \le R
 
 Inversely, fix $(x, t)$, another triangular region (upside down) is the *domain of dependence* of point $(x, t)$
 
-##### Energy
+### Energy
 Conservation of energy:
 $$\text{KE} = \frac{1}{2}\rho \int_{-\infty}^{\infty} u_t^2 \mathrm{d} x $$
 $$\text{PE} = \frac{1}{2}T \int_{-\infty}^{\infty} u_x^2 \mathrm{d} x $$
 $$ E = \frac{1}{2}\int_{-\infty}^{\infty} (\rho u_t^2 + T u_x^2) \mathrm{d} x $$
 PE can be obtained by $\frac{\mathrm{d}KE}{\mathrm{d}t} = -\frac{\mathrm{d}\mathrm{PE}}{\mathrm{d}t} = 0$, differentiating KE
 
-#### 2.3 Diffusion equation
+## 2.3 Diffusion equation
 $$ u_{t} = k u_{xx} $$
 Weak maximum principle: max value of $u$ occurs at $t = 0$ or $x = 0$ or $x = l$
-##### Uniqueness
+### Uniqueness
 The Dirichlet problem for the diffusion equation, i.e.
 $$
 u_t - ku_{xx} = f(x, t), \quad x \in (0, l), t>0 \newline
@@ -69,7 +69,7 @@ u(x, 0) = \phi(x) \newline
 u(0, t) = g(t), \quad u(l, t) = h(t)
 $$
 has unique solution, i.e. the solution is completely determined by initial and boundary condition
-##### Stability
+### Stability
 Let $u_1$ and $u_2$ be solutions of the Dirichlet problem for $\phi=\phi_1$ and $\phi=\phi_2$ resp., $u_1(x, 0) = \phi_1(x), u_2(x, 0) = \phi_2(x)$
 and for $h = g = f = 0$,
 
@@ -81,7 +81,7 @@ stability in the uniform sense:
 $$\max_x{|u_1-u_2|} \le \max_x{|\phi_1-\phi_2|}$$
 proven by maximum principle
 
-##### Diffusion on the whole line
+### Diffusion on the whole line
 $$ \tag{2.4.1}
 u_t = ku_{xx}, \quad x\in \real, t>0  \newline
 u(x,0) = \phi(x)
@@ -116,7 +116,7 @@ $$ \lim_{\epsilon\rightarrow 0}\int_{-\infty}^{\infty}S(x-y,\epsilon)h(y)\mathrm
 Cutting out the spike of $S$ and consider the max value:
 $$ \lim_{t\rightarrow 0}\max_{|x|>\delta} S(x,t) = 0 $$
 
-##### Comparison of waves and diffusions
+### Comparison of waves and diffusions
 
 | Property                  | Waves                         | Diffusion     |
 | :---                      | :---                          | :---          |
@@ -128,7 +128,7 @@ $$ \lim_{t\rightarrow 0}\max_{|x|>\delta} S(x,t) = 0 $$
 | Behavior as $t\rightarrow \infty$ | Energy is constant so does not decay  | Decays to $0$ if $\phi$ integrable    |
 | Information               | Transported                   | Lost gradually    |
 
-#### 3.1 Diffusion on the half-line
+## 3.1 Diffusion on the half-line
 Dirichlet problem:
 $$
 v_t - kv_{xx} = 0, \quad x>0, t> 0 \newline
@@ -149,7 +149,7 @@ $$
 Solution is by even extension of $\phi(x)$:
 $$ u(x, t) = \frac{1}{\sqrt{4\pi kt}}\int_{0}^{\infty} [e^{-(x - y)^2/4kt} + e^{-(x + y)^2/4kt} \phi(y)] \mathrm{d}y $$
 
-#### 3.2 Reflection of waves
+## 3.2 Reflection of waves
 Dirichlet problem:
 $$
 \begin{aligned}
@@ -162,7 +162,7 @@ Solution by odd extension of $\phi$ and $\psi$:
 $$ v(x, t) = \frac{1}{2}[\phi(x + ct) + \phi(x - ct)] + \frac{1}{2c}\int^{x + ct}_{x - ct}\psi(s)\mathrm{d}s, \quad x>c|t| $$
 $$ v(x, t) = \frac{1}{2}[\phi(ct + x) + \phi(ct - x)] + \frac{1}{2c}\int^{ct + x}_{ct - x}\psi(s)\mathrm{d}s, \quad x<c|t| $$
 
-##### Finite Interval
+### Finite Interval
 
 $$
 v_{tt} - c^2v_{xx} = 0, \quad x\in(0,l),t\in \real \newline
@@ -172,8 +172,8 @@ $$
 Solution is by odd extension of $\phi$ and $\psi$, and counting the number of reflection occurred at $(x,t)$.
 Different regions (diamonds/triangles) in the $x$-$t$ plane has a different expression of solution
 
-#### 3.3 Diffusion with a source
-##### Source on whole-line
+## 3.3 Diffusion with a source
+### Source on whole-line
 $$ u_t - ku_{xx} = f(x,t), \quad x\in \real, t>0 \newline
 u(x,0) = \phi(x)
 $$
@@ -183,7 +183,7 @@ u(x,t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)\mathrm{d}y+\int_0^t\int_{-\infty
 $$
 Guessing by analogy to solution of 1st order linear ODE using integrating factor (operator method)
 
-##### Source on a half-line
+### Source on a half-line
 $$ v_t - kv_{xx} = f(x,t), \quad x>0, t>0 \newline
 v(0,t) = h(t) \newline
 v(x,0) = \phi(x)
@@ -197,7 +197,7 @@ w(x,0) = \phi(x)
 $$
 To solve, let $W(x,t) = w(x,t)-xh(t)$
 
-#### 3.4 Waves with a source
+## 3.4 Waves with a source
 $$ \tag{3.4.1}u_{tt} - c^2u_{xx} = f(x, t) $$
 $$
 \tag{3.4.2}
@@ -211,7 +211,7 @@ $$ u(x, t) =
 \tag{3.4.3} \frac{1}{2}[\phi(x + ct) + \phi(x - ct)] + \newline \frac{1}{2c}\int^{x + ct}_{x - ct}\psi+\frac{1}{2c}\iint_\Delta f$$
 where $\Delta$ is the characteristic triangle bounded by $y = x - ct, y = x + ct, t = 0$
 
-#### Well-posedness
+## Well-posedness
 Let $u_1$ be the solution to the data $\phi_1, \psi_1, f_1$, 
 $u_2$ be the solution to the data $\phi_2, \psi_2, f_2$, 
 Consider $u=u_1-u_2$, and the area of $\Delta$ is $ct^2$:
@@ -230,16 +230,16 @@ $$
 \|u_1-u_2\|_T \le \delta(1+T+T^2)<\epsilon
 $$
 
-#### Proof of $(3.4.3)$
+## Proof of $(3.4.3)$
 By method of characteristics, Green's theorem, or operator method
 
-#### 3.5 Diffusion analysis
+## 3.5 Diffusion analysis
 In 2.3,
 $$ \tag{3.5.1} u(x, t) = \int_{-\infty}^{\infty}S(x-y,t)\phi(y)\mathrm{d}y, \quad t>0 $$
 can be written as
 $$ \tag{3.5.2} u(x, t) = \frac{1}{\sqrt{4\pi}}\int_{-\infty}^{\infty}e^{-p^2/4}\phi(x-p\sqrt{kt})\mathrm{d}p$$
 
-##### Theorem 1:
+### Theorem 1:
 
 $\phi$ bounded for $x \in\real \Rightarrow$
 
@@ -253,15 +253,15 @@ $u(x,t)$ has all derivatives of all orders, even if $\phi$ is not differentiable
 
 This means all solutions become smooth as soon as diffusion takes place
 
-##### Theorem 2:
+### Theorem 2:
 Let $\phi(x)$ be bounded and piecewise continuous, then $(3.5.1)$ is infinitely differentiable solution for $t > 0$ and 
 $$ \lim_{t\rightarrow 0} u(x,t) = \frac{1}{2}[\phi(x^+)+\phi(x^-)]$$
 
 
-### Chapter 4 Boundary Problems
-#### 4.1 Separation of variables, Dirichlet condition
+# Chapter 4 Boundary Problems
+## 4.1 Separation of variables, Dirichlet condition
 
-##### Homogenous wave equation
+### Homogenous wave equation
 $$
 \tag{4.1.1}
 u_{tt} = c^2u_{xx}, \quad x \in (0, l)
@@ -302,7 +302,7 @@ $$
 \psi(x) = \sum_n{\frac{n\pi c}{l}B_n \sin{\frac{n\pi x}{l}}}
 $$
 
-##### Homogenous diffusion equation (Dirichlet)
+### Homogenous diffusion equation (Dirichlet)
 $$
 u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
 u(0, t) = u(l, t) = 0 \newline
@@ -326,8 +326,8 @@ and $-\frac{\mathrm{d}^2}{\mathrm{d}x^2}$ is the operator. There're infinitely m
 
 $\lambda_n > 0$ for this Dirichlet problem
 
-#### 4.2 Neumann condition
-##### Homogenous diffusion equation
+## 4.2 Neumann condition
+### Homogenous diffusion equation
 $$
 u_t = ku_{xx}, \quad x \in (0, l), t>0 \newline
 u_x(0, t) = u_x(l, t) = 0 \newline
@@ -351,7 +351,7 @@ $$
 \phi(x) = \frac{1}{2}A_0 + \sum_{n=1}^{\infty}A_n\cos\frac{n\pi x}{l}
 $$
 
-##### Homogenous wave equation
+### Homogenous wave equation
 $$
 u_{tt} = c^2u_{xx}, \quad x \in (0, l)
 $$
@@ -381,14 +381,14 @@ $$
 \frac{n\pi c}{l} B_n\cos \frac{n\pi x}{l}
 $$
 
-#### 4.3 Robin condition
+## 4.3 Robin condition
 Solving $-X'' = \lambda X$ with BC
 $$
 X' - a_0X = 0, \quad x = 0 \newline
 X' + a_lX = 0, \quad x = l
 $$
 
-##### Positive eigenvalues: $\lambda = \beta^2 >0$
+### Positive eigenvalues: $\lambda = \beta^2 >0$
 $$
 \tag{4.3.10}
 \tan \beta l = \frac{(a_0 + a_l)\beta}{\beta^2-a_0a_l}
@@ -421,14 +421,14 @@ $$
 a_0 + a_l > -a_0a_ll
 $$
 
-##### Zero eigenvalue
+### Zero eigenvalue
 iff
 $$
 \tag{4.3.15}
 a_0 + a_l = -a_0a_ll
 $$
 
-##### Negative eigenvalue: $\lambda = -\gamma^2 < 0$
+### Negative eigenvalue: $\lambda = -\gamma^2 < 0$
 
 $$
 \tag{4.3.16}
@@ -453,7 +453,7 @@ $$
 a_0 + a_l < -a_0a_ll
 $$
 
-##### Summary:
+### Summary:
 Case 1 $\Rightarrow\lambda_n > 0$
 
 Case 2:
@@ -461,7 +461,7 @@ Case 2:
 - $a_0 + a_l = -a_0a_ll \Rightarrow$ $\lambda_0 = 0, \lambda_n > 0, n > 0$ 
 - $a_0 + a_l < -a_0a_ll \Rightarrow$ $\lambda_0 < 0, \lambda_n > 0, n > 0$ 
 
-#### Conclusion
+## Conclusion
 Solution:
 $$
 u(x,t) = \sum_n T_n(t)X_n(x)
@@ -474,7 +474,7 @@ A_n \cos(\sqrt{\lambda_n}ct) + B_n \sin(\sqrt{\lambda_n}ct) \quad  & \text{for w
 \end{cases}
 $$
 
-#### 5.1 Fourier series coefficients
+## 5.1 Fourier series coefficients
 Key observation:
 $$
 \int_0^l\sin\frac{n\pi x}{l}\sin\frac{m\pi x}{l}\mathrm{d}x = 0, \quad \text{if } m \ne n
@@ -516,7 +516,7 @@ $$
 B_n = \frac{1}{l}\int_0^l \phi(x) \sin\frac{n \pi x}{l} \mathrm{d} x, \quad n > 0
 $$
 
-##### Fourier Series and boundary conditions
+### Fourier Series and boundary conditions
 Fourier {cosine, sine} series can be regarded as expansion of arbitrary function which is {even, odd} and has period $2l$ defined for $x\in \real$
 
 From 5.1,
@@ -524,14 +524,14 @@ From 5.1,
 - $u_x(x, 0) = u_x(l, 0) = 0$ Neumann BCs correspond to the even extension 
 - $u(l, t) = u(-l, t), u_x(l, t) = u_x(-l, t)$ Periodic BCs correspond to the periodic extension 
 
-#### Complex form of full Fourier series
+## Complex form of full Fourier series
 $$
 \phi(x) = \sum_{n=-\infty}^{\infty}c_n e^{in\pi x/l}
 $$
 $$
 c_n = \frac{1}{2l}\int_{-l}^{l}\phi(x) e^{-in\pi x/l} \mathrm{d}x$$
 
-#### Orthogonality and general Fourier series
+## Orthogonality and general Fourier series
 For $f(x), g(x): [a, b] \rightarrow \real$
 
 Inner product:
@@ -568,7 +568,7 @@ $$
 $$
 $\therefore X_1 \bot X_2$
 
-##### Symmetric boundary conditions
+### Symmetric boundary conditions
 Given any pair of boundary conditions
 $$
 \tag{5.1.4}
@@ -583,7 +583,7 @@ for any $f, g$ that satisfy the pair of boundary conditions
 
 All standard boundary conditions are symmetric
 
-##### Theorem 1:
+### Theorem 1:
 For symmetric boundary conditions, any 2 eigenfunctions that correspond to different eigenvalues are orthogonal. $\therefore$ For any function expanded in a series of these eigenfunctions, the coefficients are determined
 
 Proof:
@@ -606,7 +606,7 @@ Caution:
 1. Mind the convergence of the series
 2. $\lambda_1 = \lambda_2$ $\Rightarrow$ the $X_1, X_2$ may not be orthogonal but they can be made so by Gram-Schmdit orthogonalization procedure
 
-#### Complex eigenvalues
+## Complex eigenvalues
 Inner product:
 
 For $f(x), g(x): [a, b] \rightarrow \Complex$
@@ -620,13 +620,13 @@ $$
 f'(x)\overline{g(x)} - f(x) \overline{g'(x)} \Big|_{x=a}^{x=b} = 0
 $$
 
-##### Theorem 2:
+### Theorem 2:
 
 Under the same condition as Theorem 1, all eigenvalues are real, and all eigenfunctions can be chosen to be real valued
 
-#### Negative eigenvalues
+## Negative eigenvalues
 
-##### Theorem 3:
+### Theorem 3:
 Under the same condition as Theorem 1, if
 $$
 f(x)f'(x)\Big|_{x=a}^{x=b} \le 0
@@ -635,7 +635,7 @@ for all $f(x)$ satisfying the BCs, then there is no negative eigenvalue
 
 This is true for Dirichlet, Neumann, and Periodic conditions but not for some Robin conditions
 
-#### 5.4 Completeness
+## 5.4 Completeness
 
 Consider the eigenvalue problem 
 $$
@@ -652,7 +652,7 @@ A_n = \frac{(f, X_n)}{(X_n, X_n)} = \frac{\int_a^bf(x) \overline{X_n(x)}\mathrm{
 $$
 The Fourier series is $\sum_nA_nX_n(x)$
 
-##### Convergence theorems:
+### Convergence theorems:
 
 Let $f: [a, b] \rightarrow \real$, and consider the Fourier series of $(5.4.1)$
 
@@ -707,7 +707,7 @@ Definition: The infinite orthogonal set of functions $\{X_n\}$ is called *comple
 
 Corollary 7: $\int_a^b|f|^2\mathrm{d}x < \infty$ $\Rightarrow$ $(5.4.19)$ is true
 
-#### 5.6 Inhomogenous boundary condition
+## 5.6 Inhomogenous boundary condition
 
 Diffusion equation with sources at both end:
 $$
@@ -716,7 +716,7 @@ u(0, t) = h(t), u(l, t) = j(t) \newline
 u(x, 0) = 0
 $$
 Separated solution $u = X(x)T(t)$ will not fit the boundary condition (considering $\phi(x) = 0$)
-##### Expansion method
+### Expansion method
 From 4.1, the correct expansion for $u$ is the Fourier sine series
 $$
 u(x,t) = \sum_{n=1}^{\infty}u_n(t)\sin\frac{n\pi x}{l}
@@ -733,7 +733,7 @@ $$
 u_n(t) = Ce^{-\lambda_nkt}-2n\pi l^{-2}k\int_0^te^{-\lambda_nk(t-s)}[(-1)^nj(s)-h(s)]\mathrm{d}s
 $$
 
-##### Method of shifting the data
+### Method of shifting the data
 Consider the inhomogenous wave problem:
 $$
 u_{tt} - c^2u_{xx} = f(x, t) \newline
@@ -755,7 +755,7 @@ Then $v$ satisfy the same problem but with 0 boundary data, with initial data $\
 
 e.g. when $h, k, f(x)$  are all independent of time, then $-c^2U_{xx}=f(x), U(0) = h, U(l) = k$, and $v(x, t) = u(x, t) - U(x)$ solves the problem with 0 boundary data, zero on RHS of DE, and initial data $\phi(x) - U(x), \psi(x)$
 
-#### 6.1 Laplace's equation
+## 6.1 Laplace's equation
 If diffusion or wave process is stationary, i.e. independent of time, then $u_{t} \equiv 0, u_{tt} \equiv 0$, and both equations reduce to Laplace's equation:
 $$
 u_{xx} = 0, \quad \text{(1D)} \newline
@@ -780,16 +780,16 @@ $$
 u = h \quad \text{or} \quad \frac{\partial u}{\partial n} =h \quad \text{or} \quad \frac{\partial u}{\partial n}+au=h, \quad \bold{x} \in\partial D
 $$
 
-##### Maximum principle
+### Maximum principle
 
 Let $D$ be a connected bounded open set (in 2D or 3D space). $u$ is a harmonic function in $D$ that is continuous on $\overline{D} = D \cup\partial D$ $\Rightarrow$ maximum and minimum of $u$ are attained on $\partial D$ and no where inside unless when $u$ is constant
 
 Max/Min existence on boundary is proven by 2nd derivative test and considering $v(\bold{x})=u(\bold{x}) + \epsilon|\bold{x}|^2, \epsilon > 0$. Absence of min/max inside -> see 6.3
 
-##### Uniqueness of Dirichlet problem
+### Uniqueness of Dirichlet problem
 Proven by letting two solutions $u, v$ and let $w = u - v$, and use the maximum principle
 
-##### Invariance in 2 dimensions
+### Invariance in 2 dimensions
 $$
 \Delta u(\bold{x})=\Delta u(\bold{x}')
 $$
@@ -821,7 +821,7 @@ $$
 u = c_1 \log r + c_2
 $$
 
-#### Invariance in 3 dimension
+## Invariance in 3 dimension
 $$
 \Delta u(B\bold{x}) = \Delta u(\bold{x})
 $$
@@ -850,7 +850,7 @@ u = -c_1\frac{1}{r}+c_2 \newline
 $$
 
 
-#### 6.2 Rectangles and cubes
+## 6.2 Rectangles and cubes
 If the domain is of a special geometry, the PDE can be solve in the same way as ch 4.
 
 1. Look for separated the solution of the PDE
@@ -858,7 +858,7 @@ If the domain is of a special geometry, the PDE can be solve in the same way as 
 3. Sum the series
 4. Put in inhomogeneous initial or BCs 
 
-#### 6.3 Poisson's formula
+## 6.3 Poisson's formula
 Dirichlet problem for a circle:
 $$
 u_{xx} + u_{yy} = 0, \quad x^2 + y^2 < a^2 \newline
@@ -877,20 +877,20 @@ u(\bold{x}) = \frac{a^2-|\bold{x}|^2}{2\pi a}\int_{|\bold{x}'|=a }\frac{u(\bold{
 $$
 for $\bold{x} \in D$, where $u(\bold{x}') = h(\phi)$
 
-##### Theorem 1
+### Theorem 1
 Let $h(\phi) = u(\bold{x}')$ be continous function on the circle $\partial D$. Then the Poisson's formula provides the only harmonic function in $D$ s.t.
 $$
 \lim_{\bold{x} \rightarrow \bold{x}_0} u(\bold{x)}=h(\bold{x}_0), \forall \bold{x}_0 \in \partial D
 $$
 This means $u(\bold{x})$ is continuous on $\overline{D} = D \cup \partial D$
 
-##### Mean value property
+### Mean value property
 Let $u$ be a harmonic function in a disk $D$ (continuous on $\overline{D}$). Then $u( \bold{0})$ is the average of $u$ on $\partial D$ 
 
-##### Differentiability
+### Differentiability
 Let $u$ be a harmonic function in any open set $D$ of the plane. Then $u(\bold{x)} = u(x, y)$ has all partial derivatives of all order in $D$.
 
-#### 7.1 Green's first identity
+## 7.1 Green's first identity
 From product rule
 $$ (vu_x)_x = v_xu_x + vu_{xx}
 $$
@@ -922,7 +922,7 @@ $$
 $$
 This problem has no unique solution
 
-#### Mean value property
+## Mean value property
 The average value of any harmonic function over any sphere equals the value at the center.
 
 Proven by $\Delta u(\bold{x}) = 0, |\bold{x}|\le a$, $\frac{\partial u}{\partial \bold{n}} = \frac{\partial u}{\partial r}$ where $r = (x^2 + y^2 + z^2)^{1/2} = |\bold{x}|$, and by changing to spherical coordinates
@@ -931,13 +931,13 @@ $$
 \frac{1}{\text{area of }S} \iint_Su\ \mathrm{d}S = u(\bold{0})
 $$
 
-#### Maximum principle
+## Maximum principle
 For 3D, if $D$ is any solid region, a nonconstant harmonic function in $D$ cannot take its maximum value inside $D$ but only on $\partial D$
 
-#### Uniqueness
+## Uniqueness
 applies for Dirichlet and Neumann problems. Proven by difference of two solutions $u - v$, using Green's first identity in between the proof
 
-#### Dirichlet's principle
+## Dirichlet's principle
 Energy:
 $$
 E[w] = \frac{1}{2}\iiint_D|\nabla w|^2\ \mathrm{d} \bold{x}
@@ -946,7 +946,7 @@ The state of lowest energy of any physical system is called a *ground state*, th
 
 Let $u(\bold{x})$ be the unique harmonic function in $D$ that satisfies $w = h(\bold{x)}$ on $\partial D$. Let $w(\bold{x)}$ be any function in $D$ that satisfies the same condition. Then $E[w] \ge E[u]$
 
-#### Green's Second identity
+## Green's Second identity
 $$
 \tag{7.2.G2}
 \iiint_D(u\Delta v-v \Delta u)\ \mathrm{d} \bold{x} = \iint_{\partial D}\Big(u\frac{\partial v}{\partial \bold{n}}-v\frac{\partial u}{\partial \bold{n}}\Big)\ \mathrm{d}S
@@ -954,7 +954,7 @@ $$
 Proven by switching $u, v$ from $(G1)$ and subtracting.
 
 A boundary condition is called symmetric if RHS of $(G2)$ vanishes
-#### Representation Formula
+## Representation Formula
 For $\Delta u = 0, \bold{x} \in D$, any harmonic function can represented as:
 $$
 \tag{7.2.1}
@@ -964,7 +964,7 @@ $$
 =\iint_{\partial D}\Big(u\frac{\partial v}{\partial \bold{n}} - v\frac{\partial u}{\partial \bold{n}}\Big)\mathrm{d}S, \quad v = -\frac{1}{4\pi |\bold{x}-\bold{x}_0|}
 $$
 
-#### Green's function
+## Green's function
 $v = -\frac{1}{4\pi |\bold{x}-\bold{x}_0|}$ is harmonic except at $\bold{x}_0$
 
 Defined in domain $D$ for the operator $-\Delta$, and for a point $\bold{x}_0 \in D$
@@ -987,7 +987,7 @@ $$
 u( \bold{x}_0)=\iint_{\partial D}h( \bold{x})\frac{\partial G( \bold{x}, \bold{x}_0) }{\partial \bold{n}}\mathrm{d}S
 $$
 
-#### Symmetry of Green's function
+## Symmetry of Green's function
 $$
 G(\bold{x}, \bold{x}_0) = G(\bold{x}_0, \bold{x}), \quad \bold{x} \ne \bold{x}_0
 $$
@@ -1004,7 +1004,7 @@ u( \bold{x}_0)=\iint_{\partial D}h( \bold{x})\frac{\partial G( \bold{x}, \bold{x
 $$
 Proven by Green's second identity and same procedure as deriving $(7.2.1)$
 
-#### Half space
+## Half space
 $$
 \Delta u = 0, \quad D = z > 0 \newline
 u(x, y, 0) = h(x, y)
@@ -1020,7 +1020,7 @@ $$
 u(\bold{x}_0) = \frac{z_0}{2\pi}\iint_{\partial D}\frac{h(\bold{x})}{|\bold{x}-\bold{x}_0|^3}\mathrm{d}S
 $$
 
-#### Sphere
+## Sphere
 $$
 \Delta u = 0, \quad |\bold{x}| < a \newline
 u = h, \quad |\bold{x}| = a
@@ -1045,3 +1045,97 @@ $$
 \tag{7.4.16}
 u(\bold{x}_0) = \frac{a^2-|\bold{x}_0|^2}{4\pi a}\iint_{|\bold{x}|=a}\frac{h(\bold{x})}{|\bold{x}-\bold{x}_0|^3}\mathrm{d}S
 $$
+
+## 8.1
+
+### Finite differences
+Let $u_j \sim u(j\Delta x)$, where $\Delta x$ is the *mesh size*
+
+Approximation for 1st derivative $\frac{\partial u}{\partial x}(j\Delta x)$:
+$$
+\frac{u_j - u_{j-1}}{\Delta x} \quad \text{Backward difference}
+$$
+$$
+\frac{u_{j + 1} - u_{j}}{\Delta x} \quad \text{Forward difference}
+$$
+$$
+\frac{u_{j + 1} - u_{j - 1}}{2\Delta x} \quad \text{Centered difference}
+$$
+Theses are correct approximation by the taylor series of $u(x + \Delta x)$ and $u(x - \Delta x)$ 
+
+There centered difference is correct approximation to the order $O(\Delta x)^2$, where the others are to the order $O(\Delta x)$
+
+For second derivative:
+$$
+u''(j\Delta x) \sim \frac{u_{j+1}-2u_j+u_{j-1}}{(\Delta x)^2}
+$$
+
+For two variables, choose two mesh sizes:
+$$
+u(j\Delta x, n\Delta t) \sim u_j^n
+$$
+Then forward difference for $\frac{\partial u}{\partial t}$:
+$$
+\frac{\partial u}{\partial t}(j\Delta x, n\Delta t) \sim \frac{u_j^{n+1}-u_j^n}{\Delta t}
+$$
+
+## Approximation of diffusion
+For the problem:
+$$
+u_t = u_{xx}, \quad x \in (0, \pi), t > 0 \newline
+u = 0, \quad x = 0,\pi \newline
+u(x, 0) = \phi(x) = \begin{cases}
+x, & x \in (0, \frac{\pi}{2}) \\
+\pi - x, & x \in (\frac{\pi}{2}, \pi) \\
+\end{cases}
+$$
+Let
+$$
+s = \frac{\Delta t}{(\Delta x)^2}
+$$
+$$
+\tag{8.2.2}
+u_j^{n+1} = s(u_{j+1}^n+u_{j-1}^n)+(1-2s)u_j^n
+$$
+Looking for solution of the form (separate the variables in the difference equation)
+$$
+\tag{8.2.4}
+u_j^n = X_jT_n
+$$
+Then
+$$
+\tag{8.2.5}
+\frac{T_{n+1}}{T_n}=1-2s+s\frac{X_{j+1}+X_{j-1}}{X_j}
+$$
+Both sides of $(8.2.5)$ must be a constant $\xi$ independent of $j$ and $n$, therefore
+$$
+\tag{8.2.6}
+T_n = \xi^nT_0
+$$
+$$
+\tag{8.2.7}
+s\frac{X_{j+1}+X_{j-1}}{X_j} + 1 - 2s = \xi
+$$
+This is a discrete version of 2nd order ODE, so guess the solution of the form $X_j = a\cos j\theta+b\sin j\theta$, and by using the BCs:
+$$
+X_j = \sin(jk\Delta x)
+$$
+$(8.2.7)$ takes the form
+$$
+\tag{8.2.9}
+\xi = \xi(k) = 1 - 2s[1-\cos(k\Delta x)]
+$$
+
+By $(8.2.6)$, the growth in time $t = n\Delta t$ at the wave number $k$ is governed by $\xi(k)$. The scheme is unstable unless $|\xi(k)| \le 1 \ \forall k$
+
+Therefore stability requires:
+$$
+\frac{\Delta t}{(\Delta x)^2} = s \le \frac{1}{2}
+$$
+
+By assuming the following, $(8.2.9)$ can be derived from $(8.2.7)$ quickly:
+$$
+X_j = (e^{ik\Delta x})^j
+$$
+
+There exists unconditionally stable scheme like the Crank-Nicolson scheme

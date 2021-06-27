@@ -1,5 +1,8 @@
 ### Math review
 
+Useful:
+https://en.wikipedia.org/wiki/Vector_calculus_identities
+
 
 #### Cross product
 $$ \bold{a} \times \bold{b} = \|\bold{a}\| \|\bold{b}\| \sin(\theta) \bold{\hat{n}} $$
